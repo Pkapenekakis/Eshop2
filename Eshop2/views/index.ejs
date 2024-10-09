@@ -4,15 +4,15 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title> Pkapenekakis's Eshop</title>   
-        <link rel="stylesheet" href="/stylesheets/style.css"/>   
+        <title> <%= title %> </title>   
+        <link rel="stylesheet" href="/stylesheets/indexStyle.css"/>   
         <link rel="shortcut icon" href="#">
     </head>
     
     <body>
             <div class="login-card">
                 <div class="login-card-form">
-                    <form id="loginform" onsubmit="return Login(event)">
+                    <form action = "/auth/login" method="Post" id="loginform" onsubmit="return Login(event)">
                         <h2>Sign in</h2>
                         <div class="form-input">
                             <input id="username" type="text" name="username" required/>
