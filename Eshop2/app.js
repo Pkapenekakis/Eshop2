@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const logger = require('morgan');
 const passport = require('./Strategies/local-strategy');
+const mongoose = require('mongoose');
 
 
 
@@ -17,6 +18,8 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+mongoose.connect("mongodb://localhost/Eshop").then(() => console.log("Connected to database")).catch((err) => console.log(`Error: ${err}`));
 
 //middleware Setup
 app.use(logger('dev'));
