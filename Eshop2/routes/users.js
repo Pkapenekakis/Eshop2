@@ -29,7 +29,7 @@ router.post('/', checkSchema(createUserValidationSchema) ,async (req,res) => {
   const newUser = new User(data);
   try {
     const savedUser = await newUser.save() //Save the user 
-    return res.status(201).send(savedUser);
+    return res.status(201).redirect('/index'); //send(savedUser);
   } catch (error) {
     console.log(error);
     return res.sendStatus(400);

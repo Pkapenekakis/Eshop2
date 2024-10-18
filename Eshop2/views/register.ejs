@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8">      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title> <%= title %>  </title>
+        <link rel = "stylesheet" href="/stylesheets/registerStyle.css">
+        <link rel="shortcut icon" href="#">
+    </head>
+    
+    <body>
+        <div class="register-card">
+            <div class="register-card-form">
+                <form action = "/users/" method="Post" id="form-register" onsubmit="return Register(event)">          
+                   <!--  <div class="form-input"> method = "POST" action = "#"
+                        <h2>Register</h2>
+                        
+                        <input type="text" name="name" required/>
+                        <span>Name</span>
+                        <i></i>
+                    </div>
+
+                    <div class="form-input">
+                        <input type="text" name="surname" required/>
+                        <span>Surname</span>
+                        <i></i> 
+                    </div>  -->
+
+                    <div class="form-input">
+                        <input id=username type="text" name="username" required/>
+                        <span>Username</span>
+                        <i></i>
+                    </div>
+
+                    <div class="form-input">
+                        <input id=password type="text" name="password" required/>
+                        <span>Password</span>
+                        <i></i>
+                    </div>
+
+                    <div class="form-input">
+                        <input id=displayName type="text" name="displayName" required/>
+                        <span>Display Name</span>
+                        <i></i>
+                    </div>
+                    <!-- <div class="form-input">
+                        <label for="role">Role</label>
+                        <select name="role" id="role">
+                            <optgroup>
+                                <option value="customer">Customer</option>
+                                <option value="seller">Seller</option>
+                            </optgroup>   
+                        </select>
+                    </div> -->
+                    
+                     <button type="submit" class="btn-register">Register </button>
+                    <!-- <input type="submit" name="submit" value = "Register" class="btn-register"/> -->
+                    <input type = "button" onclick="toIndex()" value = "Cancel" class="cancelButton"> 
+                </form>
+            </div>
+            
+            <script type="text/javascript" src="/javascripts/navigation.js"></script>
+        </div>       
+    </body>
+<htlm>
