@@ -1,5 +1,4 @@
-const { default: mongoose } = require('mongoose');
-const schema = require('mongoose');
+import {mongoose} from 'mongoose';
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -8,15 +7,18 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     displayName: {
-        type: mongoose.Schema.Types.String
+        type: mongoose.Schema.Types.String,
+        required: true
     },
     password: {
         type: mongoose.Schema.Types.String,
         required: true,
-        unique: true
     }, 
 });
 
+// Create an index on the username to ensure uniqueness
+userSchema.index({ username: 1 }, { unique: true });
+
 const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+export default User;

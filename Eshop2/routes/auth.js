@@ -1,6 +1,7 @@
-const express = require('express');
-const passport = require('passport');
-const Strategy = require('passport-local');
+import express from 'express';
+import passport from 'passport';
+import Strategy from 'passport-local';
+
 const router = express.Router();
 
 
@@ -26,4 +27,4 @@ router.post('/logout', (req,res) =>{
     })
 });
 
-module.exports = router;
+export default router;

@@ -1,19 +1,21 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const logger = require('morgan');
-const passport = require('./Strategies/local-strategy');
-const mongoose = require('mongoose');
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cookieParser from'cookie-parser';
+import session from'express-session';
+import logger from'morgan';
+import passport from'./Strategies/local-strategy.js';
+import mongoose from'mongoose';
 
-
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const authRouter = require('./routes/auth');
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+import authRouter from './routes/auth.js';
 
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -63,4 +65,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;

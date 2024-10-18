@@ -1,6 +1,6 @@
-const passport = require('passport');
-const Strategy= require('passport-local');
-const { testUsers } = require('../utils/constants');
+import passport from 'passport';
+import Strategy from 'passport-local';
+import {testUsers} from '../utils/constants.js'; 
 
 passport.serializeUser((user,done) => { //stores the user object we validated in the object
     //console.log('Inside serialise User');
@@ -38,4 +38,4 @@ passport.use(
     })
 );
 
-module.exports = passport;
+export default passport;
