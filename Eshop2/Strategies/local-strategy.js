@@ -1,18 +1,14 @@
 import passport from 'passport';
 import Strategy from 'passport-local';
-import {testUsers} from '../utils/constants.js'; 
+import User from '../mongoose/schemas/user.js';
 
 passport.serializeUser((user,done) => { //stores the user object we validated in the object
-    //console.log('Inside serialise User');
-    //console.log(user);
     done(null,user.id); //needs to pass something that is unique
 });
 
-passport.deserializeUser((id,done) => {
-    //console.log('Inside deserialise User');
-    //console.log(`${id}`);
+passport.deserializeUser(async (id,done) => {
     try{
-        const findUser = testUsers.find((user) => user.id === id);
+        const findUser = await User.findById(id);
         if(!findUser) throw new Error("Cannot find user");
         done(null,findUser);
     }catch(err){
@@ -20,22 +16,16 @@ passport.deserializeUser((id,done) => {
     }
 })
 
-passport.use(
-    new Strategy((username, password, done) => { //Function to validate the user
-        //console.log(`Username: ${username}`);
-        //console.log(`Password: ${password}`);
+export default  passport.use(
+    new Strategy(async (username, password, done) => { //Function to validate the user
         try {
-            const findUser = testUsers.find((user) => user.username === username);
-
+            const findUser = await User.findOne({ username });
             if(!findUser) throw new Error("User was not found");
             if(findUser.password !== password) throw new Error("Invalid Credentials");
             done(null,findUser); //move on and return the user
         } catch (error) {
-            
             done(error, null); //move on from the verify function
         }
         
     })
 );
-
-export default passport;

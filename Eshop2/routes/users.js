@@ -1,6 +1,8 @@
 import express from 'express';
 import {
-  checkSchema
+  checkSchema,
+  validationResult,
+  matchedData,
 } from "express-validator";
 import User from '../mongoose/schemas/user.js'; 
 import {createUserValidationSchema} from '../utils/validationSchemas.js';
@@ -14,8 +16,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', checkSchema(createUserValidationSchema) ,async (req,res) => {
-  const { body } = req; //TODO check the req body is valid
-  const newUser = new User(body);
+  const result = validationResult(req);
+
+  if( !result.isEmpty() ){
+    return res.status(400).send(result.array());
+  }
+
+  const data = matchedData(req);
+  const newUser = new User(data);
   try {
     const savedUser = await newUser.save() //async method
     return res.status(201).send(savedUser);
